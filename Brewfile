@@ -1,6 +1,5 @@
 # Taps
 tap "homebrew/bundle"
-tap "hashicorp/tap"
 
 # ============================================
 # CLI Tools
@@ -17,30 +16,21 @@ brew "git"
 brew "gh"                    # GitHub CLI
 brew "git-delta"             # Better diff viewer
 
-# DevOps Tools
-brew "kubectl"
+# Version Manager
+brew "asdf"                  # Universal version manager for Node.js, Python, Go, etc.
+
+# DevOps Tools (tools not managed by asdf)
 brew "kubectx"               # Switch contexts/namespaces quickly
 brew "k9s"                   # Kubernetes TUI
 brew "helm"
 brew "kustomize"
 brew "stern"                 # Multi-pod log tailing
-brew "hashicorp/tap/terraform"
 brew "terragrunt"
-brew "ansible"
-brew "awscli"
-brew "azure-cli"
 
 # Container Tools
 brew "docker"
 brew "docker-compose"
 brew "colima"                # Docker runtime for Mac
-
-# Programming Languages
-brew "go"
-brew "node"
-brew "nvm"
-brew "python"
-brew "pyenv"
 
 # Development Tools
 brew "jq"                    # JSON processor
@@ -78,12 +68,6 @@ cask "docker"
 
 # Browsers
 cask "google-chrome"
-cask "firefox"
-
-# Productivity
-cask "rectangle"             # Window management
-cask "raycast"               # Spotlight replacement
-cask "1password"             # Password manager
 
 # Communication
 cask "slack"

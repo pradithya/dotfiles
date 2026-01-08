@@ -78,6 +78,40 @@ create_symlink() {
 
 create_symlink "$DOTFILE_DIR/.zshrc" "$HOME/.zshrc"
 create_symlink "$DOTFILE_DIR/.gitconfig" "$HOME/.gitconfig"
+create_symlink "$DOTFILE_DIR/.aliases" "$HOME/.aliases"
+create_symlink "$DOTFILE_DIR/.tool-versions" "$HOME/.tool-versions"
+
+# ============================================
+# Setup asdf
+# ============================================
+
+echo "Setting up asdf..."
+
+# Source asdf
+export ASDF_DIR="$HOME/.asdf"
+if [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]; then
+    . "$(brew --prefix asdf)/libexec/asdf.sh"
+fi
+
+# Install asdf plugins
+echo "Installing asdf plugins..."
+
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git 2>/dev/null || true
+asdf plugin add python https://github.com/asdf-vm/asdf-python.git 2>/dev/null || true
+asdf plugin add golang https://github.com/asdf-vm/asdf-golang.git 2>/dev/null || true
+asdf plugin add terraform https://github.com/asdf-vm/asdf-hashicorp.git 2>/dev/null || true
+asdf plugin add kubectl https://github.com/asdf-community/asdf-kubectl.git 2>/dev/null || true
+
+# Install tool versions from .tool-versions
+echo "Installing tool versions..."
+asdf install
+
+# ============================================
+# Install global npm packages
+# ============================================
+
+echo "Installing global npm packages..."
+npm install -g @anthropic-ai/claude-code
 
 # ============================================
 # Install kubectl krew plugin manager
@@ -97,25 +131,6 @@ if ! command -v kubectl-krew &> /dev/null; then
 fi
 
 # ============================================
-# Setup NVM
-# ============================================
-
-if [ ! -d "$HOME/.nvm" ]; then
-    echo "Setting up NVM directory..."
-    mkdir -p "$HOME/.nvm"
-fi
-
-# ============================================
-# Setup pyenv
-# ============================================
-
-if command -v pyenv &> /dev/null; then
-    echo "Installing latest Python via pyenv..."
-    pyenv install 3.12 --skip-existing
-    pyenv global 3.12
-fi
-
-# ============================================
 # Final steps
 # ============================================
 
@@ -125,7 +140,6 @@ echo "  Installation Complete!"
 echo "==================================="
 echo ""
 echo "Next steps:"
-echo "1. Update .gitconfig with your name and email"
-echo "2. Restart your terminal or run: source ~/.zshrc"
-echo "3. Install Node.js: nvm install --lts"
+echo "1. Restart your terminal or run: source ~/.zshrc"
+echo "2. Verify tools: asdf current"
 echo ""
