@@ -1,6 +1,3 @@
-# Taps
-tap "homebrew/bundle"
-
 # ============================================
 # CLI Tools
 # ============================================
@@ -60,7 +57,7 @@ cask "visual-studio-code"
 cask "postman"
 
 # Containers
-cask "docker"
+cask "docker-desktop"
 
 # Browsers
 cask "google-chrome"
@@ -81,4 +78,3 @@ vscode "ms-python.python"
 vscode "dbaeumer.vscode-eslint"
 vscode "esbenp.prettier-vscode"
 vscode "eamodio.gitlens"
-vscode "redhat.vscode-yaml"

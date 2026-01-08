@@ -87,8 +87,7 @@ create_symlink "$DOTFILE_DIR/.tool-versions" "$HOME/.tool-versions"
 
 echo "Setting up asdf..."
 
-# Source asdf
-export ASDF_DIR="$HOME/.asdf"
+# Source asdf (Homebrew installation)
 if [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]; then
     . "$(brew --prefix asdf)/libexec/asdf.sh"
 fi
@@ -136,7 +135,8 @@ fi
 
 if ! command -v k3d &> /dev/null; then
     echo "Installing k3d..."
-    curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+    mkdir -p "$HOME/.local/bin"
+    curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | K3D_INSTALL_DIR="$HOME/.local/bin" USE_SUDO=false bash
 else
     echo "k3d already installed"
 fi
