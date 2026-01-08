@@ -11,10 +11,6 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "starship"              # Optional: modern prompt
 
-# Git
-brew "git"
-brew "gh"                    # GitHub CLI
-brew "git-delta"             # Better diff viewer
 
 # Version Manager
 brew "asdf"                  # Universal version manager for Node.js, Python, Go, etc.
