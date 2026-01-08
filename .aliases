@@ -85,27 +85,3 @@ alias cls='clear'
 # VS Code
 alias code='code'
 alias c='code .'
-
-# ============================================
-# Helper Functions
-# ============================================
-
-# Quick switch kubernetes namespace
-kn() {
-  kubectl config set-context --current --namespace="$1"
-}
-
-# Get pods with wide output and watch
-kw() {
-  kubectl get pods -o wide -w "$@"
-}
-
-# Port forward shortcut
-kpf() {
-  kubectl port-forward "$1" "$2"
-}
-
-# Get all resources in a namespace
-kall() {
-  kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n "${1:-default}"
-}
