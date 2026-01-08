@@ -1,0 +1,163 @@
+# Path to oh-my-zsh installation
+export ZSH="$HOME/.oh-my-zsh"
+
+# Theme
+ZSH_THEME="robbyrussell"
+
+# Plugins
+plugins=(
+  git
+  docker
+  kubectl
+  terraform
+  golang
+  npm
+  python
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# ============================================
+# PATH Configuration
+# ============================================
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Go
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+
+# Node.js (using nvm)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Python (pyenv)
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Krew (kubectl plugin manager)
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# ============================================
+# Kubectl Aliases
+# ============================================
+
+alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kgpa='kubectl get pods --all-namespaces'
+alias kgd='kubectl get deployments'
+alias kgs='kubectl get services'
+alias kgn='kubectl get nodes'
+alias kgns='kubectl get namespaces'
+alias kgi='kubectl get ingress'
+alias kgcm='kubectl get configmaps'
+alias kgsec='kubectl get secrets'
+alias kgpv='kubectl get pv'
+alias kgpvc='kubectl get pvc'
+
+alias kdp='kubectl describe pod'
+alias kdd='kubectl describe deployment'
+alias kds='kubectl describe service'
+alias kdn='kubectl describe node'
+
+alias kaf='kubectl apply -f'
+alias kdf='kubectl delete -f'
+alias kex='kubectl exec -it'
+alias kl='kubectl logs'
+alias klf='kubectl logs -f'
+
+alias kctx='kubectl config use-context'
+alias kns='kubectl config set-context --current --namespace'
+alias kcurrent='kubectl config current-context'
+alias kcontexts='kubectl config get-contexts'
+
+# Get all resources in namespace
+alias kga='kubectl get all'
+alias kgaa='kubectl get all --all-namespaces'
+
+# ============================================
+# Terraform Aliases
+# ============================================
+
+alias tf='terraform'
+alias tfi='terraform init'
+alias tfp='terraform plan'
+alias tfa='terraform apply'
+alias tfd='terraform destroy'
+alias tfv='terraform validate'
+alias tff='terraform fmt'
+alias tfs='terraform state'
+
+# ============================================
+# Docker Aliases
+# ============================================
+
+alias d='docker'
+alias dc='docker-compose'
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias di='docker images'
+alias dex='docker exec -it'
+alias dl='docker logs'
+alias dlf='docker logs -f'
+
+# ============================================
+# Git Aliases (additional to oh-my-zsh git plugin)
+# ============================================
+
+alias gs='git status'
+alias gco='git checkout'
+alias gcm='git checkout main'
+alias gp='git pull'
+alias gpr='git pull --rebase'
+
+# ============================================
+# General Aliases
+# ============================================
+
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias cls='clear'
+
+# VS Code
+alias code='code'
+alias c='code .'
+
+# ============================================
+# Environment Variables
+# ============================================
+
+export EDITOR='code --wait'
+export KUBE_EDITOR='code --wait'
+
+# ============================================
+# Functions
+# ============================================
+
+# Quick switch kubernetes namespace
+kn() {
+  kubectl config set-context --current --namespace="$1"
+}
+
+# Get pods with wide output and watch
+kw() {
+  kubectl get pods -o wide -w "$@"
+}
+
+# Port forward shortcut
+kpf() {
+  kubectl port-forward "$1" "$2"
+}
+
+# Get all resources in a namespace
+kall() {
+  kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n "${1:-default}"
+}
