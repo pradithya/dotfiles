@@ -130,18 +130,6 @@ if ! command -v kubectl-krew &> /dev/null; then
 fi
 
 # ============================================
-# Install k3d
-# ============================================
-
-if ! command -v k3d &> /dev/null; then
-    echo "Installing k3d..."
-    mkdir -p "$HOME/.local/bin"
-    curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | K3D_INSTALL_DIR="$HOME/.local/bin" USE_SUDO=false bash
-else
-    echo "k3d already installed"
-fi
-
-# ============================================
 # Final steps
 # ============================================
 
