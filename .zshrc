@@ -38,6 +38,9 @@ export ASDF_DIR="$HOME/.asdf"
 # Krew (kubectl plugin manager)
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
+# k3d
+export PATH="$HOME/.local/bin:$PATH"
+
 # ============================================
 # Environment Variables
 # ============================================
