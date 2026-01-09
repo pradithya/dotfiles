@@ -19,6 +19,7 @@ brew "helm"
 brew "kustomize"
 brew "stern"                 # Multi-pod log tailing
 brew "terragrunt"
+brew "k3d"
 
 # Container Tools
 brew "docker"
