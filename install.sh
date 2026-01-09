@@ -82,6 +82,21 @@ create_symlink "$DOTFILE_DIR/.aliases" "$HOME/.aliases"
 create_symlink "$DOTFILE_DIR/.tool-versions" "$HOME/.tool-versions"
 
 # ============================================
+# Setup Git Credential Helper via GitHub CLI
+# ============================================
+
+echo "Configuring git credential helper..."
+if command -v gh &> /dev/null; then
+    if ! gh auth status &> /dev/null; then
+        echo "GitHub CLI not authenticated. Please login to GitHub..."
+        gh auth login
+    fi
+    gh auth setup-git
+else
+    git config --global credential.helper osxkeychain
+fi
+
+# ============================================
 # Setup asdf
 # ============================================
 
@@ -96,10 +111,10 @@ fi
 echo "Installing asdf plugins..."
 
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git 2>/dev/null || true
-asdf plugin add python https://github.com/asdf-vm/asdf-python.git 2>/dev/null || true
-asdf plugin add golang https://github.com/asdf-vm/asdf-golang.git 2>/dev/null || true
-asdf plugin add terraform https://github.com/asdf-vm/asdf-hashicorp.git 2>/dev/null || true
-asdf plugin add kubectl https://github.com/asdf-community/asdf-kubectl.git 2>/dev/null || true
+asdf plugin add python https://github.com/danhper/asdf-python.git 2>/dev/null || true
+asdf plugin add golang https://github.com/asdf-community/asdf-golang.git 2>/dev/null || true
+asdf plugin add terraform https://github.com/asdf-community/asdf-hashicorp.git 2>/dev/null || true
+asdf plugin add kubectl https://github.com/asdf-community/asdf-kubectl.git 2>/dev/null || true 
 
 # Install tool versions from .tool-versions
 echo "Installing tool versions..."

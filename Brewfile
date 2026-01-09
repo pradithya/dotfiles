@@ -26,6 +26,7 @@ brew "docker-compose"
 brew "colima"                # Docker runtime for Mac
 
 # Development Tools
+brew "gh"                    # GitHub CLI
 brew "jq"                    # JSON processor
 brew "yq"                    # YAML processor
 brew "fzf"                   # Fuzzy finder
