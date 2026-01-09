@@ -1,39 +1,14 @@
 # ============================================
-# Kubectl Aliases
+# Kubectl Aliases (from github.com/ahmetb/kubectl-aliases)
 # ============================================
 
-alias k='kubectl'
-alias kgp='kubectl get pods'
-alias kgpa='kubectl get pods --all-namespaces'
-alias kgd='kubectl get deployments'
-alias kgs='kubectl get services'
-alias kgn='kubectl get nodes'
-alias kgns='kubectl get namespaces'
-alias kgi='kubectl get ingress'
-alias kgcm='kubectl get configmaps'
-alias kgsec='kubectl get secrets'
-alias kgpv='kubectl get pv'
-alias kgpvc='kubectl get pvc'
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
 
-alias kdp='kubectl describe pod'
-alias kdd='kubectl describe deployment'
-alias kds='kubectl describe service'
-alias kdn='kubectl describe node'
-
-alias kaf='kubectl apply -f'
-alias kdf='kubectl delete -f'
-alias kex='kubectl exec -it'
-alias kl='kubectl logs'
-alias klf='kubectl logs -f'
-
+# Additional kubectl aliases
 alias kctx='kubectl config use-context'
 alias kns='kubectl config set-context --current --namespace'
 alias kcurrent='kubectl config current-context'
 alias kcontexts='kubectl config get-contexts'
-
-# Get all resources in namespace
-alias kga='kubectl get all'
-alias kgaa='kubectl get all --all-namespaces'
 
 # ============================================
 # Terraform Aliases

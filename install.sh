@@ -79,6 +79,7 @@ create_symlink() {
 create_symlink "$DOTFILE_DIR/.zshrc" "$HOME/.zshrc"
 create_symlink "$DOTFILE_DIR/.gitconfig" "$HOME/.gitconfig"
 create_symlink "$DOTFILE_DIR/.aliases" "$HOME/.aliases"
+create_symlink "$DOTFILE_DIR/.kubectl_aliases" "$HOME/.kubectl_aliases"
 create_symlink "$DOTFILE_DIR/.tool-versions" "$HOME/.tool-versions"
 
 # ============================================
