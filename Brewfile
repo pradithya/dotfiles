@@ -24,7 +24,6 @@ brew "k3d"
 # Container Tools
 brew "docker"
 brew "docker-compose"
-brew "colima"                # Docker runtime for Mac
 
 # Development Tools
 brew "gh"                    # GitHub CLI
@@ -59,7 +58,7 @@ cask "visual-studio-code"
 cask "postman"
 
 # Containers
-cask "docker-desktop"
+cask "rancher"
 
 # Browsers
 cask "google-chrome"
