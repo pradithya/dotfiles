@@ -27,13 +27,13 @@ source $ZSH/oh-my-zsh.sh
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Go
-export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
-
 # asdf version manager (manages Node.js, Python, Go, Terraform, kubectl, etc.)
 export ASDF_DIR="$HOME/.asdf"
 [ -f "$ASDF_DIR/asdf.sh" ] && . "$ASDF_DIR/asdf.sh"
+
+# Go (after asdf to use asdf-managed Go)
+export GOBIN="$(go env GOBIN)"
+[ -n "$GOBIN" ] && export PATH="$PATH:$GOBIN"
 
 # Krew (kubectl plugin manager)
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
