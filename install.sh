@@ -81,6 +81,7 @@ create_symlink "$DOTFILE_DIR/.gitconfig" "$HOME/.gitconfig"
 create_symlink "$DOTFILE_DIR/.aliases" "$HOME/.aliases"
 create_symlink "$DOTFILE_DIR/.kubectl_aliases" "$HOME/.kubectl_aliases"
 create_symlink "$DOTFILE_DIR/.tool-versions" "$HOME/.tool-versions"
+create_symlink "$DOTFILE_DIR/.vimrc" "$HOME/.vimrc"
 
 # ============================================
 # Setup Git Credential Helper via GitHub CLI
