@@ -50,6 +50,7 @@ brew "grpcurl"
 
 # Terminal
 cask "iterm2"
+cask "ghostty"
 
 # IDE & Editors
 cask "visual-studio-code"
