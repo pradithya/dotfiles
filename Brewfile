@@ -67,6 +67,7 @@ cask "google-chrome"
 # Communication
 cask "slack"
 cask "zoom"
+cask "notion"
 
 # ============================================
 # VS Code Extensions (optional)
