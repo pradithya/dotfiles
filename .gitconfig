@@ -1,6 +1,6 @@
 [user]
-    name = pradithya
-    email = pradithya.aria@gmail.com
+	name = Pradithya Aria Pura
+	email = pradithya.aria@gmail.com
 
 [init]
     defaultBranch = main
@@ -25,7 +25,7 @@
     colorMoved = default
 
 [pull]
-    rebase = true
+	rebase = false
 
 [push]
     default = current
