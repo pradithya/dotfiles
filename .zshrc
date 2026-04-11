@@ -57,3 +57,5 @@ source "$HOME/.aliases"
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/pradithya/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+source <(fzf --zsh)

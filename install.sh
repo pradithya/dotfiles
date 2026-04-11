@@ -67,11 +67,12 @@ create_symlink() {
     if [ -L "$dest" ]; then
         echo "Removing existing symlink: $dest"
         rm "$dest"
-    elif [ -f "$dest" ]; then
-        echo "Backing up existing file: $dest -> ${dest}.backup"
+    elif [ -e "$dest" ]; then
+        echo "Backing up existing path: $dest -> ${dest}.backup"
         mv "$dest" "${dest}.backup"
     fi
 
+    mkdir -p "$(dirname "$dest")"
     echo "Linking: $src -> $dest"
     ln -s "$src" "$dest"
 }
@@ -82,6 +83,7 @@ create_symlink "$DOTFILE_DIR/.aliases" "$HOME/.aliases"
 create_symlink "$DOTFILE_DIR/.kubectl_aliases" "$HOME/.kubectl_aliases"
 create_symlink "$DOTFILE_DIR/.tool-versions" "$HOME/.tool-versions"
 create_symlink "$DOTFILE_DIR/.vimrc" "$HOME/.vimrc"
+create_symlink "$DOTFILE_DIR/nvim" "$HOME/.config/nvim"
 
 # ============================================
 # Setup Git Credential Helper via GitHub CLI

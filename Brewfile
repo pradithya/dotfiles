@@ -39,6 +39,7 @@ brew "watch"
 brew "wget"
 brew "curl"
 brew "tmux"
+brew "neovim"                # Modern vim with LSP, treesitter, lua config
 
 # Networking
 brew "httpie"
