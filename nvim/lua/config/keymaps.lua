@@ -43,7 +43,7 @@ map("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 -- deleting a buffer preserves the Neo-tree split layout.
 
 -- UI toggles
-map("n", "<leader>uw", function() vim.opt.wrap = not vim.o.wrap end, { desc = "Toggle word wrap" })
+map("n", "<leader>tw", function() vim.opt.wrap = not vim.o.wrap end, { desc = "Toggle word wrap" })
 
 -- Diagnostics (LSP)
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
