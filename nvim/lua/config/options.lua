@@ -71,6 +71,15 @@ vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Auto-reload files changed outside Neovim (autoread needs a checktime trigger)
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
 -- Workaround: disable Treesitter highlighting during bracketed paste to prevent
 -- "attempt to call method 'range' (a nil value)" errors on large pastes.
 -- Neovim signals bracketed paste with mode "!" in ModeChanged events.
