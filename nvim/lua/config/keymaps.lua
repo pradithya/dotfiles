@@ -45,6 +45,10 @@ map("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 -- UI toggles
 map("n", "<leader>tw", function() vim.opt.wrap = not vim.o.wrap end, { desc = "Toggle word wrap" })
 
+-- Terminal splits
+map("n", "<leader>ts", "<cmd>split | term<cr>", { desc = "Terminal (horizontal split)" })
+map("n", "<leader>tv", "<cmd>vsplit | term<cr>", { desc = "Terminal (vertical split)" })
+
 -- Diagnostics (LSP)
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
