@@ -70,3 +70,25 @@ vim.g.maplocalleader = " "
 -- Disable some built-in plugins we don't need
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- Workaround: disable Treesitter highlighting during bracketed paste to prevent
+-- "attempt to call method 'range' (a nil value)" errors on large pastes.
+-- Neovim signals bracketed paste with mode "!" in ModeChanged events.
+local paste_group = vim.api.nvim_create_augroup("DisableTSOnPaste", { clear = true })
+vim.api.nvim_create_autocmd("ModeChanged", {
+  group = paste_group,
+  pattern = "*:!",  -- entering bracketed paste mode
+  callback = function()
+    vim.b._ts_highlight_was_on = vim.b.ts_highlight
+    pcall(vim.cmd, "TSBufDisable highlight")
+  end,
+})
+vim.api.nvim_create_autocmd("ModeChanged", {
+  group = paste_group,
+  pattern = "!:*",  -- leaving bracketed paste mode
+  callback = function()
+    if vim.b._ts_highlight_was_on then
+      pcall(vim.cmd, "TSBufEnable highlight")
+    end
+  end,
+})

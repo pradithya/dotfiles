@@ -39,7 +39,8 @@ map("v", "p", '"_dP')
 -- Buffer navigation
 map("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
-map("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
+-- <leader>bd is defined by mini.bufremove (see lua/plugins/editor.lua) so that
+-- deleting a buffer preserves the Neo-tree split layout.
 
 -- Diagnostics (LSP)
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })

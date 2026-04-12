@@ -14,10 +14,20 @@ return {
       "MunifTanjim/nui.nvim",
     },
     keys = {
-      { "<leader>e", "<cmd>Neotree toggle<cr>",         desc = "Toggle file explorer" },
-      { "<leader>o", "<cmd>Neotree focus<cr>",          desc = "Focus file explorer" },
+      { "<leader>e",  "<cmd>Neotree toggle<cr>",                   desc = "Toggle file explorer" },
+      { "<leader>o",  "<cmd>Neotree focus<cr>",                    desc = "Focus file explorer" },
+      { "<leader>gs", "<cmd>Neotree git_status toggle<cr>",        desc = "Git status (Neo-tree)" },
     },
     opts = {
+      sources = { "filesystem", "buffers", "git_status" },
+      source_selector = {
+        winbar = true,
+        sources = {
+          { source = "filesystem", display_name = " 󰉓 Files " },
+          { source = "buffers",    display_name = " 󰈚 Buffers " },
+          { source = "git_status", display_name = " 󰊢 Git " },
+        },
+      },
       filesystem = {
         follow_current_file = { enabled = true },
         use_libuv_file_watcher = true,
@@ -83,4 +93,51 @@ return {
 
   -- Plenary: required by many plugins
   { "nvim-lua/plenary.nvim", lazy = true },
+
+  -- Buffer remove: delete buffers without disrupting window layout
+  -- (fixes Neo-tree taking over the window when running :bd)
+  {
+    "echasnovski/mini.bufremove",
+    keys = {
+      {
+        "<leader>bd",
+        function() require("mini.bufremove").delete(0, false) end,
+        desc = "Delete buffer",
+      },
+      {
+        "<leader>bD",
+        function() require("mini.bufremove").delete(0, true) end,
+        desc = "Delete buffer (force)",
+      },
+    },
+  },
+
+  -- Diffview: tree-style file panel for diffs, merges, and file history
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFileHistory" },
+    keys = {
+      { "<leader>gd", "<cmd>DiffviewOpen<cr>",          desc = "Diff view (open)" },
+      { "<leader>gD", "<cmd>DiffviewClose<cr>",         desc = "Diff view (close)" },
+      { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File history (current file)" },
+      { "<leader>gH", "<cmd>DiffviewFileHistory<cr>",   desc = "File history (repo)" },
+    },
+  },
+
+  -- Neogit: Magit-style Git UI (stage/unstage, commit, rebase, push, ...)
+  {
+    "NeogitOrg/neogit",
+    cmd = "Neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    keys = {
+      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Neogit status" },
+    },
+    opts = {
+      integrations = { diffview = true, telescope = true },
+    },
+  },
 }
